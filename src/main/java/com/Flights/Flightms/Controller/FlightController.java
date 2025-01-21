@@ -20,9 +20,9 @@ public class FlightController {
         return flightService.addNewFlight(flight);
     }
 
-    @GetMapping("/{flight_id}")
-    public FlightDTO getFlightById(@PathVariable Long flight_id) {
-        return flightService.getFlightById(flight_id);
+    @GetMapping("/{flightId}")
+    public FlightDTO getFlightById(@PathVariable Long flightId) {
+        return flightService.getFlightById(flightId);
     }
     @GetMapping
     public ResponseEntity<List<FlightDTO>> getAllFlight() {
@@ -30,12 +30,12 @@ public class FlightController {
         return ResponseEntity.ok(flights);
     }
 
-    @PutMapping("/{flight_id}")
-    public FlightDTO updateFlightData(@PathVariable Long flight_id, @RequestBody FlightDTO flight) {
-        return flightService.updateFlightById(flight_id, flight);
+    @PutMapping("/{flightId}")
+    public FlightDTO updateFlightData(@PathVariable Long flightId, @RequestBody FlightDTO flight) {
+        return flightService.updateFlightById(flightId, flight);
     }
     @DeleteMapping("/{flight_id}")
-    public String deleteFlightById(@PathVariable Long flight_id) {
-        return flightService.deleteFlightData(flight_id);
+    public String deleteFlightById(@PathVariable Long flightId) {
+        return flightService.deleteFlightData(flightId);
     }
 }

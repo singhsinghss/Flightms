@@ -30,9 +30,9 @@ public class FlightServiceImpl {
         return restTemplate.postForObject(DB_SERVICE_URL, flight, FlightDTO.class);
     }
 
-    public FlightDTO getFlightById(Long flight_id) {
-        System.out.println("Get Flight url: " + DB_SERVICE_URL + "/" + flight_id);
-        return restTemplate.getForObject(DB_SERVICE_URL + "/" + flight_id, FlightDTO.class);
+    public FlightDTO getFlightById(Long flightId) {
+        System.out.println("Get Flight url: " + DB_SERVICE_URL + "/" + flightId);
+        return restTemplate.getForObject(DB_SERVICE_URL + "/" + flightId, FlightDTO.class);
     }
     public List<FlightDTO> getAllFlights() {
         System.out.println("Get All Flight url: " + DB_SERVICE_URL);
@@ -41,11 +41,11 @@ public class FlightServiceImpl {
         return Arrays.asList(response.getBody());
     }
 
-    public FlightDTO updateFlightById(Long flight_id, FlightDTO flight) {
-        FlightDTO existingFlight = restTemplate.getForObject(DB_SERVICE_URL + "/" + flight_id, FlightDTO.class);
+    public FlightDTO updateFlightById(Long flightId, FlightDTO flight) {
+        FlightDTO existingFlight = restTemplate.getForObject(DB_SERVICE_URL + "/" + flightId, FlightDTO.class);
 
         if (existingFlight == null) {
-            throw new RuntimeException("Flight not found with ID: " + flight_id);
+            throw new RuntimeException("Flight not found with ID: " + flightId);
         }
 
         existingFlight.setDeparture(flight.getDeparture());
@@ -56,15 +56,15 @@ public class FlightServiceImpl {
         existingFlight.setAvailable_seats(flight.getAvailable_seats());
         existingFlight.setFlight_number(flight.getFlight_number());
         existingFlight.setUpdated_at(LocalDateTime.now());
-        String updateUrl = DB_SERVICE_URL + "/" + flight_id;
+        String updateUrl = DB_SERVICE_URL + "/" + flightId;
         restTemplate.put(updateUrl, existingFlight);
 
         return existingFlight;
     }
 
-    public String deleteFlightData(Long flight_id) {
-        restTemplate.delete(DB_SERVICE_URL + "/" + flight_id);
-        return "Flight with ID " + flight_id + " deleted successfully.";
+    public String deleteFlightData(Long flightId) {
+        restTemplate.delete(DB_SERVICE_URL + "/" + flightId);
+        return "Flight with ID " + flightId + " deleted successfully.";
     }
 
 }

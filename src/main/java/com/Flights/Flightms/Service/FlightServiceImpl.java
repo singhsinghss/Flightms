@@ -47,7 +47,6 @@ public class FlightServiceImpl {
         if (existingFlight == null) {
             throw new RuntimeException("Flight not found with ID: " + flightId);
         }
-
         existingFlight.setDeparture(flight.getDeparture());
         existingFlight.setArrival(flight.getArrival());
         existingFlight.setDeparture_time(flight.getDeparture_time());
